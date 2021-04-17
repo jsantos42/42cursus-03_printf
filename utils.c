@@ -55,12 +55,12 @@ char    *hex_converter(size_t decimal)
     return (hexadecimal);
 }
 
-void padding(int *printed_chars, t_flags *flags)
+void padding(t_flags *flags)
 {
     while (flags->min_width > flags->len)
     {
         write(1, &flags->padding, 1);
-        (*printed_chars)++;
+        (flags->printed_chars)++;
         flags->min_width--;
     }
 }

@@ -1,6 +1,6 @@
 #include "printf.h"
 
-void    print_char(char **str, va_list args, int *printed_chars, t_flags *flags)
+void    print_char(char **str, va_list args, t_flags *flags)
 {
     char character;
 
@@ -9,14 +9,14 @@ void    print_char(char **str, va_list args, int *printed_chars, t_flags *flags)
     if (flags->left_justify != 0)
     {
         write(1, &character, 1);
-        padding(printed_chars, flags);
-        *printed_chars += flags->len;
+        padding(flags);
+        flags->printed_chars += flags->len;
     }
     else
     {
-        padding(printed_chars, flags);
+        padding(flags);
         write(1, &character, 1);
-        *printed_chars += flags->len;
+        flags->printed_chars += flags->len;
     }
     (*str)++;
 }
@@ -39,7 +39,7 @@ void    print_char(char **str, va_list args, int *printed_chars, t_flags *flags)
 */
 
 
-void    print_int(char **str, va_list args, int *printed_chars, t_flags *flags)
+void    print_int(char **str, va_list args, t_flags *flags)
 {
     int     decimal;
     char    *string;
@@ -52,21 +52,63 @@ void    print_int(char **str, va_list args, int *printed_chars, t_flags *flags)
     if (flags->left_justify != 0)
     {
         ft_putstr_fd(string, 1);
-        padding(printed_chars, flags);
-        *printed_chars += flags->len;
+        padding(flags);
+        flags->printed_chars += flags->len;
     }
     else
     {
-        padding(printed_chars, flags);
+        padding(flags);
         ft_putstr_fd(string, 1);
-        *printed_chars += flags->len;
+        flags->printed_chars += flags->len;
     }
     (*str)++;
 }
 
-void    print_address
+void    print_address(char **str, va_list args, t_flags *flags)
+{
+    unsigned long int   address;
+    char                *hexadecimal;
+    char                *temp;
 
-void    print_string(char **str, va_list args, int *printed_chars, t_flags *flags)
+    address = va_arg(args, unsigned long int);
+    hexadecimal = hex_converter(address);
+
+    flags->len = ft_strlen(hexadecimal);
+    if (flags->precision >= 0)
+        hexadecimal = check_precision(hexadecimal, flags);
+
+////// ver esta parte
+    if (flags->precision >= flags->min_width)
+    {
+        ft_putstr_fd("0x", 1);
+        flags->printed_chars += 2;
+    }
+    else
+    {
+        temp = hexadecimal;
+        hexadecimal = ft_strjoin("0x", temp);
+        free(temp);
+    }
+
+
+
+    if (flags->left_justify != 0)
+    {
+        ft_putstr_fd(hexadecimal, 1);
+        padding(flags);
+        flags->printed_chars += flags->len;
+    }
+    else
+    {
+        padding(flags);
+        ft_putstr_fd(hexadecimal, 1);
+        flags->printed_chars += flags->len;
+    }
+    (*str)++;
+    free(hexadecimal);
+}
+
+void    print_string(char **str, va_list args, t_flags *flags)
 {
     char    *string;
     int     heap;
@@ -83,21 +125,21 @@ void    print_string(char **str, va_list args, int *printed_chars, t_flags *flag
     if (flags->left_justify != 0)
     {
         ft_putstr_fd(string, 1);
-        padding(printed_chars, flags);
-        *printed_chars += flags->len;
+        padding(flags);
+        flags->printed_chars += flags->len;
     }
     else
     {
-        padding(printed_chars, flags);
+        padding(flags);
         ft_putstr_fd(string, 1);
-        *printed_chars += flags->len;
+        flags->printed_chars += flags->len;
     }
     (*str)++;
     if (heap)
         free(string);
 }
 
-void    print_hex(char **str, va_list args, int *printed_chars, t_flags *flags)
+void    print_hex(char **str, va_list args, t_flags *flags)
 {
     int     decimal;
     char    *hexadecimal;
@@ -110,14 +152,14 @@ void    print_hex(char **str, va_list args, int *printed_chars, t_flags *flags)
     if (flags->left_justify != 0)
     {
         ft_putstr_fd(hexadecimal, 1);
-        padding(printed_chars, flags);
-        *printed_chars += flags->len;
+        padding(flags);
+        flags->printed_chars += flags->len;
     }
     else
     {
-        padding(printed_chars, flags);
+        padding(flags);
         ft_putstr_fd(hexadecimal, 1);
-        *printed_chars += flags->len;
+        flags->printed_chars += flags->len;
     }
     (*str)++;
     free(hexadecimal);

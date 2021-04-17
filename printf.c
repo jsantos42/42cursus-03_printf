@@ -44,33 +44,30 @@ int check_flags(char **str, t_flags *flags)
 }
 
 
-int choose_conv(char **str, va_list args, t_flags *flags)
+void    choose_conv(char **str, va_list args, t_flags *flags)
 {
-    int printed_chars;
-
-    printed_chars = 0;
+    flags->type = **str;
+    flags->printed_chars = 0;
     if (**str == 'c')
-        print_char(str, args, &printed_chars, flags);
+        print_char(str, args, flags);
     else if (**str == 'd' || **str == 'i')
-        print_int(str, args, &printed_chars, flags);
+        print_int(str, args, flags);
     else if (**str == 'p')
-        print_address(str, args, &printed_chars, flags);
+        print_address(str, args, flags);
     else if (**str == 's')
-        print_string(str, args, &printed_chars, flags);
+        print_string(str, args, flags);
 //    else if (**str == 'u')
 //        print_unsigned_int(str, args, &printed_chars);
     else if (**str == 'x' || **str == 'X')
-        print_hex(str, args, &printed_chars, flags);
+        print_hex(str, args, flags);
     else
-        printed_chars = -1;
-    return (printed_chars);
+        flags->printed_chars = -1;
 }
 
 
 int ft_printf(const char *input, ...)
 {
     int     count;
-    int     conversion;
     char    *str;
     t_flags flags;
     va_list args;
@@ -83,9 +80,9 @@ int ft_printf(const char *input, ...)
         reading(&str, &count);
         if (*str != '\0' && !(check_flags(&str, &flags)))
         {
-            conversion = choose_conv(&str, args, &flags);
-            if (conversion >= 0)
-                count += conversion;
+            choose_conv(&str, args, &flags);
+            if (flags.printed_chars >= 0)
+                count += flags.printed_chars;
             else
                 return (-1);
         }
@@ -102,8 +99,8 @@ int main()
     char a = 'k';
     char *b = "caralho";
     int i = 66;
-    int res1 = ft_printf("ola %-5.s adeus %-0.xa\n", b, i);
-    int res2 = printf("ola %-5.s adeus %-0.xa\n", b, i);
+    int res1 = ft_printf("ola %-5.s adeus %6.11pa\n", b, i);
+    int res2 = printf("ola %-5.s adeus %6.11pa\n", b, i);
     printf("%d\n", res1);
     printf("%d\n\n\n\n\n", res2);
 

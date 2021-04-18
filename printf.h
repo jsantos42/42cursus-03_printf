@@ -28,9 +28,11 @@ void    print_int(char **str, va_list args, t_flags *flags);
 void    print_address(char **str, va_list args, t_flags *flags);
 void    print_string(char **str, va_list args, t_flags *flags);
 void    print_hex(char **str, va_list args, t_flags *flags);
+void    print_unsigned_int(char **str, va_list args, t_flags *flags);
 char    *hex_converter(size_t decimal);
 void padding(t_flags *flags);
 char    *check_precision(char *string, t_flags *flags);
+//char    *unsigned_itoa(unsigned int n);
 int ft_printf(const char *input, ...);
 
 #endif

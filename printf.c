@@ -56,8 +56,8 @@ void    choose_conv(char **str, va_list args, t_flags *flags)
         print_address(str, args, flags);
     else if (**str == 's')
         print_string(str, args, flags);
-//    else if (**str == 'u')
-//        print_unsigned_int(str, args, &printed_chars);
+    else if (**str == 'u')
+        print_unsigned_int(str, args, flags);
     else if (**str == 'x' || **str == 'X')
         print_hex(str, args, flags);
     else
@@ -98,9 +98,9 @@ int main()
 {
     char a = 'k';
     char *b = "caralho";
-    int i = 66;
-    int res1 = ft_printf("ola %-5.s adeus %-6.3pa\n", b, i);
-    int res2 = printf("ola %-5.s adeus %-6.3pa\n", b, i);
+    int i = -66;
+    int res1 = ft_printf("ola %-5.s adeus %-4.8ua\n", b, i);
+    int res2 = printf("ola %-5.s adeus %-4.8ua\n", b, i);
     printf("%d\n", res1);
     printf("%d\n\n", res2);
 

@@ -74,8 +74,6 @@ void    print_address(char **str, va_list args, t_flags *flags)
     flags->len = ft_strlen(hexadecimal);
     if (flags->precision >= 0)
         hexadecimal = check_precision(hexadecimal, flags);
-
-////// ver esta parte
     if (flags->precision >= flags->min_width)
     {
         ft_putstr_fd("0x", 1);
@@ -88,9 +86,6 @@ void    print_address(char **str, va_list args, t_flags *flags)
         free(temp);
         flags->len += 2;
     }
-
-
-
     if (flags->left_justify != 0)
     {
         ft_putstr_fd(hexadecimal, 1);
@@ -162,4 +157,38 @@ void    print_hex(char **str, va_list args, t_flags *flags)
     }
     (*str)++;
     free(hexadecimal);
+}
+
+
+void    unsigned_itoa(unsigned int n, char **string)
+{
+    if (n / 10)
+        unsigned_itoa(n / 10, string);
+    *(string++) = (n % 10) + '0';
+}
+
+void    print_unsigned_int(char **str, va_list args, t_flags *flags)
+{
+    unsigned int    number;
+    char            *string;
+
+    number = va_arg(args, unsigned int);
+//////estamos a ver a seguinte funcao
+    unsigned_itoa(number, &string);
+    flags->len = ft_strlen(string);
+    if (flags->precision >= 0)
+        string = check_precision(string, flags);
+    if (flags->left_justify != 0)
+    {
+        ft_putstr_fd(string, 1);
+        padding(flags);
+        flags->printed_chars += flags->len;
+    }
+    else
+    {
+        padding(flags);
+        ft_putstr_fd(string, 1);
+        flags->printed_chars += flags->len;
+    }
+    (*str)++;
 }

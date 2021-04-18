@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../libft/libft.h
+stdlib.h
+-
+unistd.h
+-
+
+/Users/jas/Desktop/42/printf/printf.c
+printf.h
+/Users/jas/Desktop/42/printf/printf.h
+stdio.h
+-
+
+/Users/jas/Desktop/42/printf/printf.h
+stdarg.h
+-
+unistd.h
+-
+libft.h
+/Users/jas/Desktop/42/printf/libft.h
+

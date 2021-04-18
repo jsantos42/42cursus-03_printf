@@ -21,7 +21,6 @@ void    print_char(char **str, va_list args, t_flags *flags)
     (*str)++;
 }
 
-
 /*
  * incorrect explanation!!! change it
  *
@@ -37,7 +36,6 @@ void    print_char(char **str, va_list args, t_flags *flags)
 **   if it's a int or hex, it doesn't cut it, it only decreases the
 ** padding (therefore, we change flags->min_width);
 */
-
 
 void    print_int(char **str, va_list args, t_flags *flags)
 {
@@ -88,6 +86,7 @@ void    print_address(char **str, va_list args, t_flags *flags)
         temp = hexadecimal;
         hexadecimal = ft_strjoin("0x", temp);
         free(temp);
+        flags->len += 2;
     }
 
 

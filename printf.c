@@ -99,10 +99,10 @@ int main()
     char a = 'k';
     char *b = "caralho";
     int i = 66;
-    int res1 = ft_printf("ola %-5.s adeus %6.11pa\n", b, i);
-    int res2 = printf("ola %-5.s adeus %6.11pa\n", b, i);
+    int res1 = ft_printf("ola %-5.s adeus %-6.3pa\n", b, i);
+    int res2 = printf("ola %-5.s adeus %-6.3pa\n", b, i);
     printf("%d\n", res1);
-    printf("%d\n\n\n\n\n", res2);
+    printf("%d\n\n", res2);
 
 
     int j = 2;

@@ -28,7 +28,6 @@ void    print_int(char **str, va_list args, t_flags *flags);
 void    print_address(char **str, va_list args, t_flags *flags);
 void    print_string(char **str, va_list args, t_flags *flags);
 void    print_hex(char **str, va_list args, t_flags *flags);
-//int     count_digits(int number); DESNESSARIO CREIO
 char    *hex_converter(size_t decimal);
 void padding(t_flags *flags);
 char    *check_precision(char *string, t_flags *flags);

@@ -16,17 +16,6 @@ int get_number(char **str)
     return (number);
 }
 
-//int     count_digits(int number)
-//{
-//    int count;
-//
-//    count = 1;
-//    if (number / 10)
-//        count += count_digits(number / 10);
-//    return (count);
-//}
-
-
 char    *hex_converter(size_t decimal)
 {
     char    *hexadecimal;

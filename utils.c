@@ -87,3 +87,27 @@ char    *check_precision(char *string, t_flags *flags)
         return (string);
     }
 }
+
+
+char    *unsigned_itoa(unsigned int n)
+{
+    int         	digits;
+    unsigned int	temp;
+    char            *string;
+
+    digits = 1;
+    temp = n;
+    while (temp / 10)
+    {
+        digits++;
+        temp /= 10;
+    }
+    string = malloc(sizeof(char) * digits);
+    string[digits] = '\0';
+    while (--digits >= 0)
+    {
+        string[digits] = (char)((n % 10) + '0');
+        n /= 10;
+    }
+    return (string);
+}

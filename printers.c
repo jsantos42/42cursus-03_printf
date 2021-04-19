@@ -159,22 +159,13 @@ void    print_hex(char **str, va_list args, t_flags *flags)
     free(hexadecimal);
 }
 
-
-void    unsigned_itoa(unsigned int n, char **string)
-{
-    if (n / 10)
-        unsigned_itoa(n / 10, string);
-    *(string++) = (n % 10) + '0';
-}
-
 void    print_unsigned_int(char **str, va_list args, t_flags *flags)
 {
     unsigned int    number;
     char            *string;
 
     number = va_arg(args, unsigned int);
-//////estamos a ver a seguinte funcao
-    unsigned_itoa(number, &string);
+    string = unsigned_itoa(number);
     flags->len = ft_strlen(string);
     if (flags->precision >= 0)
         string = check_precision(string, flags);
@@ -191,4 +182,5 @@ void    print_unsigned_int(char **str, va_list args, t_flags *flags)
         flags->printed_chars += flags->len;
     }
     (*str)++;
+    free(string);
 }

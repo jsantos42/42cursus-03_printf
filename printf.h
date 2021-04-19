@@ -15,7 +15,7 @@ typedef struct s_flags {
     int      min_width;
     int      precision;
     int     len;
-    char    type;
+    char    *hex_case;
     int     printed_chars;
 } t_flags;
 
@@ -29,7 +29,7 @@ void    print_address(char **str, va_list args, t_flags *flags);
 void    print_string(char **str, va_list args, t_flags *flags);
 void    print_hex(char **str, va_list args, t_flags *flags);
 void    print_unsigned_int(char **str, va_list args, t_flags *flags);
-char    *hex_converter(size_t decimal);
+char    *hex_converter(size_t decimal, t_flags *flags);
 void padding(t_flags *flags);
 char    *check_precision(char *string, t_flags *flags);
 char    *unsigned_itoa(unsigned int n);

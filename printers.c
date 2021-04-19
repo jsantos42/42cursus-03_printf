@@ -69,8 +69,7 @@ void    print_address(char **str, va_list args, t_flags *flags)
     char                *temp;
 
     address = va_arg(args, unsigned long int);
-    hexadecimal = hex_converter(address);
-
+    hexadecimal = hex_converter(address, flags);
     flags->len = ft_strlen(hexadecimal);
     if (flags->precision >= 0)
         hexadecimal = check_precision(hexadecimal, flags);
@@ -138,8 +137,12 @@ void    print_hex(char **str, va_list args, t_flags *flags)
     int     decimal;
     char    *hexadecimal;
 
+    if (**str == 'x')
+       flags->hex_case = "0123456789abcdef";
+    else
+        flags->hex_case = "0123456789ABCDEF";
     decimal = va_arg(args, int);
-    hexadecimal = hex_converter(decimal);
+    hexadecimal = hex_converter(decimal, flags);
     flags->len = ft_strlen(hexadecimal);
     if (flags->precision >= 0)
         hexadecimal = check_precision(hexadecimal, flags);

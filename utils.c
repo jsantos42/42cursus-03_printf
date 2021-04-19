@@ -16,29 +16,25 @@ int get_number(char **str)
     return (number);
 }
 
-char    *hex_converter(size_t decimal)
+char    *hex_converter(size_t decimal, t_flags *flags)
 {
     char    *hexadecimal;
-    size_t  temp;
-    int     iter;
-
-    iter = 0;
+    int     temp;
+    int     digits;
+//// 2's complement, tirar o sign
+    digits = 1;
     temp = decimal;
-    while (temp)
+    while (temp / 16)
     {
+        digits++;
         temp /= 16;
-        iter++;
     }
-    hexadecimal = malloc(sizeof(char) * iter + 1);
-    hexadecimal[iter] = 0;
+    hexadecimal = malloc(sizeof(char) * digits);
+    hexadecimal[digits] = 0;
     while (decimal)
     {
-        iter--;
-        temp = decimal % 16;
-        if (temp > 9)
-            hexadecimal[iter] = temp + 'a' - 10;
-        else
-            hexadecimal[iter] = temp + '0';
+        digits--;
+        hexadecimal[digits] = flags->hex_case[decimal % 16];
         decimal /= 16;
     }
     return (hexadecimal);

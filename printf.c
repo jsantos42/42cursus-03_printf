@@ -97,9 +97,9 @@ int main()
 {
     char a = 'k';
     char *b = "exame";
-    int i = -66;
-    int res1 = ft_printf("ola %-5s adeus %-020xa\n", b, i);
-    int res2 = printf("ola %-5s adeus %-020xa\n", b, i);
+    int i = 66;
+    int res1 = ft_printf("ola %-020xa\n", i);
+    int res2 = printf("ola %0*11xa\n", 4, i);
     printf("%d\n", res1);
     printf("%d\n\n", res2);
 

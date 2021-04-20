@@ -3,7 +3,7 @@
 int get_number(char **str)
 {
     int number;
-
+//// * flag exclusive
     number = 0;
     while (**str >= '0' && **str <= '9')
     {
@@ -21,7 +21,7 @@ char    *hex_converter(size_t decimal, t_flags *flags)
     char    *hexadecimal;
     int     temp;
     int     digits;
-//// 2's complement, tirar o sign
+//// 2's complement?
     digits = 1;
     temp = decimal;
     while (temp / 16)

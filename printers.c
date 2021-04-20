@@ -134,14 +134,14 @@ void    print_string(char **str, va_list args, t_flags *flags)
 
 void    print_hex(char **str, va_list args, t_flags *flags)
 {
-    int     decimal;
+    unsigned int     decimal;
     char    *hexadecimal;
 
     if (**str == 'x')
        flags->hex_case = "0123456789abcdef";
     else
         flags->hex_case = "0123456789ABCDEF";
-    decimal = va_arg(args, int);
+    decimal = va_arg(args, unsigned int);
     hexadecimal = hex_converter(decimal, flags);
     flags->len = ft_strlen(hexadecimal);
     if (flags->precision >= 0)

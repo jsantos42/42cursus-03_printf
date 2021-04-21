@@ -89,18 +89,11 @@ int	ft_printf(const char *input, ...)
 	return (count);
 }
 
-#include <stdio.h>
-
-int main()
-{
-	char a = 'k';
-	char *b = "exame";
-	int i = 66;
-	int res1 = ft_printf("ola %-020pa\n", &i);
-	int res2 = printf("ola %-020pa\n", &i);
-	printf("%d\n", res1);
-	printf("%d\n\n", res2);
-
-
-	return 0;
-}
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int i = 66;
+//	ft_printf("\nola %-020pa\n", &i);
+//	return 0;
+//}

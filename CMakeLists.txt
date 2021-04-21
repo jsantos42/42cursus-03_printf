@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.19)
 project(printf C)
 
 set(CMAKE_C_STANDARD 11)
@@ -51,7 +51,12 @@ add_executable(printf
         libft/ft_tolower.c
         libft/ft_toupper.c
         libft/libft.h
-        printers.c
-        printf.c
-        printf.h
-        utils.c)
+        ft_printf.c
+        ft_printf.h
+        ft_printf_c.c
+        ft_printf_di.c
+        ft_printf_p.c
+        ft_printf_s.c
+        ft_printf_u.c
+        ft_printf_xX.c
+        utils.c ft_printf_pct.c)

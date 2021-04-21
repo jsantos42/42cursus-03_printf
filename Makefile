@@ -6,8 +6,7 @@ RM =		rm -fr
 
 NAME =		libftprintf.a
 
-SRCS =		ft_printf.c		ft_printf_c.c	ft_printf_di.c	ft_printf_p.c \
-			ft_printf_s.c	ft_printf_u.c	ft_printf_xX.c	utils.c
+SRCS =		$(wildcard *.c)
 
 LIBFT =		libft
 

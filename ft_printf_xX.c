@@ -8,6 +8,7 @@ char	*hex_converter(size_t decimal, t_flags *flags)
 
 	digits = 1;
 	temp = decimal;
+	//nao sei se o problema nao e aqui, se calhar deveria comecar em 0 caso seja nulo
 	while (temp / 16)
 	{
 		digits++;

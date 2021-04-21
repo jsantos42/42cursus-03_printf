@@ -24,6 +24,7 @@ void	print_address(char **str, va_list args, t_flags *flags);
 void	print_string(char **str, va_list args, t_flags *flags);
 void	print_hex(char **str, va_list args, t_flags *flags);
 void	print_unsigned_int(char **str, va_list args, t_flags *flags);
+void	print_pct(char **str, t_flags *flags);
 int		get_number(char **str, va_list args);
 char	*check_precision(char *string, t_flags *flags);
 char	*hex_converter(size_t decimal, t_flags *flags);

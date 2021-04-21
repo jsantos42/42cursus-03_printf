@@ -59,6 +59,8 @@ void	choose_conv(char **str, va_list args, t_flags *flags)
 		print_unsigned_int(str, args, flags);
 	else if (**str == 'x' || **str == 'X')
 		print_hex(str, args, flags);
+	else if (**str == '%')
+		print_pct(str, flags);
 	else
 		flags->printed_chars = -1;
 }
@@ -89,11 +91,13 @@ int	ft_printf(const char *input, ...)
 	return (count);
 }
 
-//#include <stdio.h>
-//
-//int main()
-//{
+#include <stdio.h>
+
+int main()
+{
 //	int i = 66;
 //	ft_printf("\nola %-020pa\n", &i);
-//	return 0;
-//}
+//	int i = ft_printf("%s", NULL);
+	int i = ft_printf("%p", NULL);
+	return i;
+}

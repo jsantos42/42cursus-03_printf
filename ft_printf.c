@@ -24,6 +24,7 @@ int	check_flags(char **str, va_list args, t_flags *flags)
 	flags->padding = ' ';
 	flags->min_width = 0;
 	flags->precision = -1;
+	flags->hex_case = "0123456789abcdef";
 	while (**str != '\0' && (**str == '-' || **str == '0'))
 	{
 		if (**str == '-')
@@ -95,8 +96,8 @@ int main()
 	char a = 'k';
 	char *b = "exame";
 	int i = 66;
-	int res1 = ft_printf("ola %-020xa\n", i);
-	int res2 = printf("ola %0*11xa\n", 4, i);
+	int res1 = ft_printf("ola %-020pa\n", &i);
+	int res2 = printf("ola %-020pa\n", &i);
 	printf("%d\n", res1);
 	printf("%d\n\n", res2);
 

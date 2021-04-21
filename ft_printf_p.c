@@ -23,18 +23,7 @@ void	print_address(char **str, va_list args, t_flags *flags)
 		free(temp);
 		flags->len += 2;
 	}
-	if (flags->left_justify != 0)
-	{
-		ft_putstr_fd(hexadecimal, 1);
-		padding(flags);
-		flags->printed_chars += flags->len;
-	}
-	else
-	{
-		padding(flags);
-		ft_putstr_fd(hexadecimal, 1);
-		flags->printed_chars += flags->len;
-	}
+	str_printer(hexadecimal, flags);
 	(*str)++;
 	free(hexadecimal);
 }

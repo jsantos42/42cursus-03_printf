@@ -71,30 +71,6 @@ char	*check_precision(char *string, t_flags *flags)
 	}
 }
 
-char	*hex_converter(size_t decimal, t_flags *flags)
-{
-	char	*hexadecimal;
-	int		temp;
-	int		digits;
-
-	digits = 1;
-	temp = decimal;
-	while (temp / 16)
-	{
-		digits++;
-		temp /= 16;
-	}
-	hexadecimal = malloc(sizeof(char) * digits);
-	hexadecimal[digits] = 0;
-	while (decimal)
-	{
-		digits--;
-		hexadecimal[digits] = flags->hex_case[decimal % 16];
-		decimal /= 16;
-	}
-	return (hexadecimal);
-}
-
 void	padding(t_flags *flags)
 {
 	while (flags->min_width > flags->len)
@@ -102,5 +78,21 @@ void	padding(t_flags *flags)
 		write(1, &flags->padding, 1);
 		(flags->printed_chars)++;
 		flags->min_width--;
+	}
+}
+
+void	str_printer(char *str, t_flags *flags)
+{
+	if (flags->left_justify != 0)
+	{
+		ft_putstr_fd(str, 1);
+		padding(flags);
+		flags->printed_chars += flags->len;
+	}
+	else
+	{
+		padding(flags);
+		ft_putstr_fd(str, 1);
+		flags->printed_chars += flags->len;
 	}
 }

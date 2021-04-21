@@ -28,6 +28,7 @@ int		get_number(char **str, va_list args);
 char	*check_precision(char *string, t_flags *flags);
 char	*hex_converter(size_t decimal, t_flags *flags);
 void	padding(t_flags *flags);
+void	str_printer(char *str, t_flags *flags);
 char	*unsigned_itoa(unsigned int n);
 
 #endif

@@ -14,18 +14,7 @@ void	print_string(char **str, va_list args, t_flags *flags)
 		string = ft_substr(string, 0, flags->precision);
 		heap = 1;
 	}
-	if (flags->left_justify != 0)
-	{
-		ft_putstr_fd(string, 1);
-		padding(flags);
-		flags->printed_chars += flags->len;
-	}
-	else
-	{
-		padding(flags);
-		ft_putstr_fd(string, 1);
-		flags->printed_chars += flags->len;
-	}
+	str_printer(string, flags);
 	(*str)++;
 	if (heap)
 		free(string);

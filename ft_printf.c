@@ -98,6 +98,6 @@ int main()
 //	int i = 66;
 //	ft_printf("\nola %-020pa\n", &i);
 //	int i = ft_printf("%s", NULL);
-	int i = ft_printf("%p", NULL);
+	int i = ft_printf("%5p", NULL);
 	return i;
 }

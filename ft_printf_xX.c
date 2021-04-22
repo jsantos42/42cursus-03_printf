@@ -8,14 +8,15 @@ char	*hex_converter(size_t decimal, t_flags *flags)
 
 	digits = 1;
 	temp = decimal;
-	//nao sei se o problema nao e aqui, se calhar deveria comecar em 0 caso seja nulo
 	while (temp / 16)
 	{
 		digits++;
 		temp /= 16;
 	}
 	hexadecimal = malloc(sizeof(char) * (digits + 1));
-	hexadecimal[digits] = 0;
+	if (decimal == 0)
+		hexadecimal[0] = '0';
+	hexadecimal[digits] = '\0';
 	while (decimal)
 	{
 		digits--;

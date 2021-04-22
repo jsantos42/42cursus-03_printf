@@ -11,7 +11,6 @@ void	print_int(char **str, va_list args, t_flags *flags)
 	    flags->negative = -1;
 	    decimal *= -1;
 	    flags->len = 1;
-// creio que esta tenho que retiar len -1 se precision > min width
     }
 	string = ft_itoa(decimal);
 	flags->len += ft_strlen(string);
@@ -21,3 +20,5 @@ void	print_int(char **str, va_list args, t_flags *flags)
 	(*str)++;
 	free(string);
 }
+
+// %d number", 0

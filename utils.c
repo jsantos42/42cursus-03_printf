@@ -46,14 +46,21 @@ char	*check_precision(char *string, t_flags *flags)
 	if (flags->precision <= flags->len)
 	{
 		flags->padding = ' ';
-		return (string);
+		if (ft_strncmp(string, "", 2) == '0')  ///acrescentei aqui para o caso de querer imprimir 0 com precisao 0 nao ser suposto dar nada
+        {
+            free(string);
+            flags->len = 0;
+            return (ft_strdup(""));
+        }
+		else
+            return (string);
 	}
 	else if (flags->precision < flags->min_width)
 	{
 		flags->padding = ' ';
-//        if (flags->negative < 0)
-//            flags->len--;
 		zeros = flags->precision - flags->len;
+		if (flags->negative < 0)  ////acrescentei aqui +1 se negativo porque acrescentamos 1 ao len na printf_d
+		    zeros++;
 		flags->len += zeros;
 		string2 = malloc((zeros + 1) * (sizeof(char)));
 		string2[zeros] = '\0';

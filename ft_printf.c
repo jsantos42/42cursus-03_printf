@@ -104,9 +104,9 @@ int	ft_printf(const char *input, ...)
 ////	int i = 66;
 ////	ft_printf("\nola %-020pa\n", &i);
 ////	int i = ft_printf("%s", NULL);
-//	int i = ft_printf("a%.*sa\n", -3, "hello");
+//	int i = ft_printf("%d\n", INT32_MIN);
 //
-//    int j = printf("a%.*sa\n", -3, "hello");
+//    int j = printf("%d\n", INT32_MIN);
 //    printf("\n\n%7.d\n", -14);
 //    printf("%7.3d\n", -14);
 //    printf("%7d\n", -14);

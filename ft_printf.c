@@ -40,13 +40,13 @@ int	check_flags(char **str, va_list args, t_flags *flags)
 			flags->padding = '0';
 		(*str)++;
 	}
-	flags->min_width = get_number(str, args);
+	flags->min_width = get_min_width(str, args, flags);
 	if (flags->left_justify == 1 && flags->padding == '0')
 		flags->padding = ' ';
 	if (**str == '.')
 	{
 		(*str)++;
-		flags->precision = get_number(str, args);
+		flags->precision = get_precision(str, args);
 	}
 	return (0);
 }
@@ -104,9 +104,9 @@ int	ft_printf(const char *input, ...)
 ////	int i = 66;
 ////	ft_printf("\nola %-020pa\n", &i);
 ////	int i = ft_printf("%s", NULL);
-//	int i = ft_printf("%.0d\n", 0);
+//	int i = ft_printf("a%.*sa\n", -3, "hello");
 //
-//    int j = printf("%.0d\n", 0);
+//    int j = printf("a%.*sa\n", -3, "hello");
 //    printf("\n\n%7.d\n", -14);
 //    printf("%7.3d\n", -14);
 //    printf("%7d\n", -14);

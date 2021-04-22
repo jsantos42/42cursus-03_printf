@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	get_number(char **str, va_list args)
+int	get_min_width(char **str, va_list args, t_flags *flags)
 {
 	int	number;
 
@@ -9,6 +9,11 @@ int	get_number(char **str, va_list args)
 	{
 		number = va_arg(args, int);
 		(*str)++;
+		if (number < 0)
+		{
+            flags->left_justify = 1;
+            number *= -1;
+        }
 		return (number);
 	}
 	while (**str >= '0' && **str <= '9')
@@ -21,6 +26,35 @@ int	get_number(char **str, va_list args)
 	}
 	return (number);
 }
+
+
+int	get_precision(char **str, va_list args)
+{
+    int	number;
+
+    number = 0;
+    if (**str == '*')
+    {
+        number = va_arg(args, int);
+        (*str)++;
+        if (number < 0)
+        return (-1);
+    }
+    while (**str >= '0' && **str <= '9')
+    {
+        number = number * 10 + **str - '0';
+        if (number > 2147483647)
+            return (-1);
+        else
+            (*str)++;
+    }
+    return (number);
+}
+
+
+
+
+
 
 /*
 ** incorrect explanation!!! change it

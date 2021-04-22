@@ -12,11 +12,13 @@ typedef struct s_flags {
 	int		len;
 	char	*hex_case;
 	int		printed_chars;
+	int     negative;
 }	t_flags;
 
 int		ft_printf(const char *input, ...);
 void	reading(char **str, int *count);
 int		check_flags(char **str, va_list args, t_flags *flags);
+void    start_flags(t_flags *flags);
 void	choose_conv(char **str, va_list args, t_flags *flags);
 void	print_char(char **str, va_list args, t_flags *flags);
 void	print_int(char **str, va_list args, t_flags *flags);
@@ -31,5 +33,6 @@ char	*hex_converter(size_t decimal, t_flags *flags);
 void	padding(t_flags *flags);
 void	str_printer(char *str, t_flags *flags);
 char	*unsigned_itoa(unsigned int n);
+void    sign_printer(t_flags *flags);
 
 #endif

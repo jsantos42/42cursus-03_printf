@@ -18,13 +18,20 @@ void	reading(char **str, int *count)
 	}
 }
 
+void    start_flags(t_flags *flags)
+{
+    flags->left_justify = 0;
+    flags->padding = ' ';
+    flags->min_width = 0;
+    flags->precision = -1;
+    flags->len = 0;
+    flags->negative = 0;
+    flags->hex_case = "0123456789abcdef";
+}
+
 int	check_flags(char **str, va_list args, t_flags *flags)
 {
-	flags->left_justify = 0;
-	flags->padding = ' ';
-	flags->min_width = 0;
-	flags->precision = -1;
-	flags->hex_case = "0123456789abcdef";
+    start_flags(flags);
 	while (**str != '\0' && (**str == '-' || **str == '0'))
 	{
 		if (**str == '-')
@@ -91,13 +98,18 @@ int	ft_printf(const char *input, ...)
 	return (count);
 }
 
-#include <stdio.h>
-
-int main()
-{
-//	int i = 66;
-//	ft_printf("\nola %-020pa\n", &i);
-//	int i = ft_printf("%s", NULL);
-	int i = ft_printf("%5p", NULL);
-	return i;
-}
+//#include <stdio.h>
+//int main()
+//{
+////	int i = 66;
+////	ft_printf("\nola %-020pa\n", &i);
+////	int i = ft_printf("%s", NULL);
+//	int i = ft_printf("%7d\n", -54);
+//
+//    int j = printf("%7d\n", -54);
+//    printf("\n\n%7.d\n", -14);
+//    printf("%7.3d\n", -14);
+//    printf("%7d\n", -14);
+//    printf("%d, %d", i, j);
+//	return 0;
+//}

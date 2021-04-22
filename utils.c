@@ -51,6 +51,8 @@ char	*check_precision(char *string, t_flags *flags)
 	else if (flags->precision < flags->min_width)
 	{
 		flags->padding = ' ';
+//        if (flags->negative < 0)
+//            flags->len--;
 		zeros = flags->precision - flags->len;
 		flags->len += zeros;
 		string2 = malloc((zeros + 1) * (sizeof(char)));
@@ -67,6 +69,9 @@ char	*check_precision(char *string, t_flags *flags)
 		flags->left_justify = 0;
 		flags->padding = '0';
 		flags->min_width = flags->precision;
+		if (flags->negative < 0)  //acrescentei este if para retirar o caracter do menos
+            flags->len--;
+        sign_printer(flags);
 		return (string);
 	}
 }
@@ -81,17 +86,36 @@ void	padding(t_flags *flags)
 	}
 }
 
+void    sign_printer(t_flags *flags)
+{
+    if (flags->negative < 0)
+    {
+        write(1, "-", 1);
+        flags->negative = 0;
+    }
+}
+
 void	str_printer(char *str, t_flags *flags)
 {
 	if (flags->left_justify != 0)
 	{
+        sign_printer(flags);
 		ft_putstr_fd(str, 1);
 		padding(flags);
 		flags->printed_chars += flags->len;
 	}
 	else
 	{
-		padding(flags);
+	    if (flags->padding == ' ')
+        {
+            padding(flags);
+            sign_printer(flags);
+        }
+	    else
+        {
+            sign_printer(flags);
+            padding(flags);
+        }
 		ft_putstr_fd(str, 1);
 		flags->printed_chars += flags->len;
 	}

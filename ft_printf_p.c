@@ -7,8 +7,6 @@ void	print_address(char **str, va_list args, t_flags *flags)
 	char				*temp;
 
 	address = va_arg(args, unsigned long int);
-//	if (address == NULL)
-//		address = "0";
 	hexadecimal = hex_converter(address, flags);
 	flags->len = ft_strlen(hexadecimal);
 	if (flags->precision >= 0)

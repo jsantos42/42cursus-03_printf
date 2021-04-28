@@ -10,7 +10,8 @@ void	print_string(char **str, va_list args, t_flags *flags)
 		string = "(null)";
 	heap = 0;
 	flags->len = ft_strlen(string);
-	if (flags->precision >= 0 && flags->precision < flags->len) {
+	if (flags->precision >= 0 && flags->precision < flags->len)
+	{
 		flags->len = flags->precision;
 		string = ft_substr(string, 0, flags->precision);
 		heap = 1;

@@ -7,11 +7,11 @@ void	print_int(char **str, va_list args, t_flags *flags)
 
 	decimal = va_arg(args, int);
 	if (decimal < 0 && decimal != -2147483648)
-    {
-	    flags->negative = -1;
-	    decimal *= -1;
-	    flags->len = 1;
-    }
+	{
+		flags->negative = -1;
+		decimal *= -1;
+		flags->len = 1;
+	}
 	string = ft_itoa(decimal);
 	flags->len += ft_strlen(string);
 	if (flags->precision >= 0)

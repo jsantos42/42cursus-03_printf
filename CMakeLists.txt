@@ -59,4 +59,4 @@ add_executable(printf
         ft_printf_s.c
         ft_printf_u.c
         ft_printf_xX.c
-        utils.c ft_printf_pct.c)
+        utils.c ft_printf_pct.c precision.c)

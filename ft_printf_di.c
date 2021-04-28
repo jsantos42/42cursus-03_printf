@@ -20,5 +20,3 @@ void	print_int(char **str, va_list args, t_flags *flags)
 	(*str)++;
 	free(string);
 }
-
-// %d number", 0

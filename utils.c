@@ -77,10 +77,10 @@ char	*check_precision(char *string, t_flags *flags)
 	char	*string2;
 	char	*string3;
 
-	if (flags->precision <= flags->len)
+	if (flags->precision <= flags->len + flags->negative) /// acrescentei + negative porque quando e negativo nos aumentamos o len para incluir o sinal neativo e, se a diferenca entre precision e len for de apenas 1, faz com que entre neste if erradamente
 	{
 		flags->padding = ' ';
-		if (ft_strncmp(string, "", 2) == '0')  ///acrescentei aqui para o caso de querer imprimir 0 com precisao 0 nao ser suposto dar nada
+		if (ft_strncmp(string, "", 2) == '0' && flags->precision == 0)  ///acrescentei aqui para o caso de querer imprimir 0 com precisao 0 nao ser suposto dar nada
         {
             free(string);
             flags->len = 0;
@@ -111,7 +111,10 @@ char	*check_precision(char *string, t_flags *flags)
 		flags->padding = '0';
 		flags->min_width = flags->precision;
 		if (flags->negative < 0)  //acrescentei este if para retirar o caracter do menos
-            flags->len--;
+        {
+		    flags->len--;
+		    flags->printed_chars += 1;
+        }
         sign_printer(flags);
 		return (string);
 	}
